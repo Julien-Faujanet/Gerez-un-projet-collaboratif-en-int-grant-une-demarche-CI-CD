@@ -52,11 +52,7 @@ jobs:
                     uses: actions/checkout@v4
                     with:
                           ref: develop
-                  - name: Configure Git
-                    run: |
-                        git config --global user.email "julienfaujanet@gmail.com"
-                        git config --global user.name "JulienFAUJA"
-
+                 
                   - name: Create and push to front branch
                     run: |
                         git fetch origin

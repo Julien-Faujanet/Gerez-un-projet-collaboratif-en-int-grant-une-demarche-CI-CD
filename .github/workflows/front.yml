@@ -61,6 +61,7 @@ jobs:
                         git checkout -B front
                         git add front/
                         git commit -m "Update front"
+                        git pull origin develop
 
                   - name: Push changes
                     uses: ad-m/github-push-action@master

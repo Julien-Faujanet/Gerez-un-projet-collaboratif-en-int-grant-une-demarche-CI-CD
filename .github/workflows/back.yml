@@ -2,10 +2,8 @@ name: Back
 
 on:
       push:
-            branches: 
-              - develop
-            paths:
-                  - 'back/**'
+            branches: [develop, back]
+      
       pull_request:
             branches:
                   - main
@@ -44,7 +42,7 @@ jobs:
                           path: back/target/site/jacoco/*
 
       build:
-            name: Build and analyze back 
+            name: Build and analyze back
             runs-on: ubuntu-latest
             needs: [back-tests]
             defaults:
@@ -85,11 +83,12 @@ jobs:
                         git config --global user.email "julienfaujanet@gmail.com"
                         git config --global user.name "JulienFAUJA"
                         
-                  - name: Commit changes
+                  - name: Commit the changes
                     run: |
                         git checkout -B back
                         git add back/
                         git commit -m "Update back"
+                        git pull origin develop
 
                   - name: Push changes
                     uses: ad-m/github-push-action@master

@@ -42,6 +42,11 @@ jobs:
                     with:
                           name: karma-report
                           path: front/coverage/bobapp
+                  - name: Push Karma report
+                    uses: ad-m/github-push-action@master
+                    with:
+                          github_token: ${{ secrets.GIT_TOKEN }}
+                          branch: ${{ github.ref }}
       push-front:
             name: Push to front branch
             runs-on: ubuntu-latest

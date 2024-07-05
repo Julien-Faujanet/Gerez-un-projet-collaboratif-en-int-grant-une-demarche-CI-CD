@@ -1,0 +1,50 @@
+name: Sonarcloud
+on:
+      push:
+            branches: [back, front]
+
+      pull_request:
+            branches: [develop, main, back, front]
+
+
+jobs:
+    analyze:
+            name: Analyze front
+            runs-on: ubuntu-latest
+            if: github.ref == 'refs/heads/front'
+            steps:
+                  - uses: actions/checkout@v4
+                    with:
+                          fetch-depth: 0
+                          projectBaseDir: front
+                          args: >
+                                -Dsonar.organization=julienfauja
+                                -Dsonar.projectKey=JulienFAUJA_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD
+                                -Dsonar.projectName=Projet10_OC_JF_Name
+                                -Dsonar.sources=./src
+
+                  - name: SonarCloud Scan
+                    uses: sonarsource/sonarcloud-github-action@v2.3.0
+                    env:
+                          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+
+    sonarcloud:
+            name: Sonarcloud Scan
+            runs-on: ubuntu-latest
+            if: github.ref == 'refs/heads/back'
+            steps:
+                  - uses: actions/checkout@v4
+                    with:
+                          fetch-depth: 0
+                          projectBaseDir: back
+                          args: >
+                                -Dsonar.organization=julienfauja
+                                -Dsonar.projectKey=JulienFAUJA_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD
+                                -Dsonar.projectName=Projet10_OC_JF_Name 
+                                -Dsonar.sources=./src/main/java
+                                -Dsonar.java.binaries=./target/classes
+                  - name: SonarCloud Scan
+                    uses: sonarsource/sonarcloud-github-action@v2.3.0
+                    env:
+                          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

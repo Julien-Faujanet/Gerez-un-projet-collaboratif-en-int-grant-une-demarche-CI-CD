@@ -88,6 +88,7 @@ jobs:
                     run: |
                         git checkout -B back
                         if [ -n "$(git status --porcelain back/)" ]; then
+                          git pull origin back
                           git add back/
                           git commit -m "Update back"
                         fi

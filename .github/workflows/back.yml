@@ -70,9 +70,25 @@ jobs:
                           path: ~/.m2
                           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
                           restore-keys: ${{ runner.os }}-m2
+      push-back:
+        name: Push to back branch
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout code
+            uses: actions/checkout@v4
+            with:
+              ref: develop
+          - name: Push to back branch
+            run: |
+              git config --global user.email "julienfaujanet@gmail.com"
+              git config --global user.name "JulienFAUJA"
+              git checkout -b back
+              git push origin back --force
+
       sonarcloud:
         name: Sonarcloud Scan
         runs-on: ubuntu-latest
+        needs: [push-back]
         steps:
           - uses: actions/checkout@v4
             with:

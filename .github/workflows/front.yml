@@ -44,11 +44,26 @@ jobs:
                     with:
                           name: karma-report
                           path: front/coverage/bobapp
+      push-front:
+            name: Push to front branch
+            runs-on: ubuntu-latest
+            needs: [ci]
+            steps:
+                  - name: Checkout code
+                    uses: actions/checkout@v4
+                    with:
+                        ref: develop
+                  - name: Push to front branch
+                    run: |
+                        git config --global user.email "julienfaujanet@gmail.com"
+                        git config --global user.name "JulienFAUJA"
+                        git checkout -b front
+                        git push origin front --force
 
       analyze:
             name: Analyze front
             runs-on: ubuntu-latest
-            needs: [ci]
+            needs: [push-front]
             steps:
                   - uses: actions/checkout@v4
                     with:

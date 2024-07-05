@@ -97,6 +97,7 @@ jobs:
             name: Sonarcloud Scan
             runs-on: ubuntu-latest
             needs: [push-back]
+            if: github.ref == 'refs/heads/back'
             steps:
                   - uses: actions/checkout@v4
                     with:

@@ -2,8 +2,8 @@ name: Back
 
 on:
       push:
-            branches: 
-              - develop
+            branches:
+                  - develop
             paths:
                   - 'back/**'
       pull_request:
@@ -71,42 +71,40 @@ jobs:
                           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
                           restore-keys: ${{ runner.os }}-m2
       push-back:
-        name: Push to back branch
-        runs-on: ubuntu-latest
-        steps:
-          - name: Checkout code
-            uses: actions/checkout@v4
-            with:
-              ref: develop
-          - name: Push to back branch
-            run: |
-              git config --global user.email "julienfaujanet@gmail.com"
-              git config --global user.name "JulienFAUJA"
-              git checkout -b back
-              git push origin back --force
-              git checkout -b develop
+            name: Push to back branch
+            runs-on: ubuntu-latest
+            steps:
+                  - name: Checkout code
+                    uses: actions/checkout@v4
+                    with:
+                          ref: develop
+                  - name: Push to back branch
+                    run: |
+                          git config --global user.email "julienfaujanet@gmail.com"
+                          git config --global user.name "JulienFAUJA"
+                          git checkout -b back
+                          git push origin back --force
+                          git checkout develop
 
       sonarcloud:
-        name: Sonarcloud Scan
-        runs-on: ubuntu-latest
-        needs: [push-back]
-        steps:
-          - uses: actions/checkout@v4
-            with:
-              fetch-depth: 0
-              projectBaseDir: back
-              args: >
-                -Dsonar.organization=julienfauja
-                -Dsonar.projectKey=JulienFAUJA_BobApp
-                -Dsonar.projectName=Projet10_OC_JF_Name 
-                -Dsonar.sources=./src/main/java
-                -Dsonar.java.binaries=./target/classes
-          - name: SonarCloud Scan
-            uses: sonarsource/sonarcloud-github-action@v2.3.0 
-            env:
-              SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-            
-                  
+            name: Sonarcloud Scan
+            runs-on: ubuntu-latest
+            needs: [push-back]
+            steps:
+                  - uses: actions/checkout@v4
+                    with:
+                          fetch-depth: 0
+                          projectBaseDir: back
+                          args: >
+                                -Dsonar.organization=julienfauja
+                                -Dsonar.projectKey=JulienFAUJA_BobApp
+                                -Dsonar.projectName=Projet10_OC_JF_Name 
+                                -Dsonar.sources=./src/main/java
+                                -Dsonar.java.binaries=./target/classes
+                  - name: SonarCloud Scan
+                    uses: sonarsource/sonarcloud-github-action@v2.3.0
+                    env:
+                          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       docker:
             name: Docker back

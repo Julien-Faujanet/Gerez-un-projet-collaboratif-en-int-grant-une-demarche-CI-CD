@@ -59,7 +59,7 @@ jobs:
                           git config --global user.name "JulienFAUJA"
                           git checkout -b front
                           git push origin front --force
-                          git checkout -b develop
+                          git checkout develop
 
       analyze:
             name: Analyze front

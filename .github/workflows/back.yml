@@ -96,8 +96,8 @@ jobs:
               projectBaseDir: back
               args: >
                 -Dsonar.organization=julienfauja
-                -Dsonar.projectKey=JulienFAUJA_Back
-                -Dsonar.projectName=Projet10_OC_JF_Back 
+                -Dsonar.projectKey=JulienFAUJA_BobApp
+                -Dsonar.projectName=Projet10_OC_JF_Name 
                 -Dsonar.sources=./src/main/java
                 -Dsonar.java.binaries=./target/classes
           - name: SonarCloud Scan

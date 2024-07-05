@@ -71,8 +71,8 @@ jobs:
                           projectBaseDir: front
                           args: >
                               -Dsonar.organization=julienfauja
-                              -Dsonar.projectKey=JulienFAUJA_Front
-                              -Dsonar.projectName=Projet10_OC_JF_Front
+                              -Dsonar.projectKey=JulienFAUJA_BobApp
+                              -Dsonar.projectName=Projet10_OC_JF_Name
                               -Dsonar.sources=./src
 
                   - name: SonarCloud Scan

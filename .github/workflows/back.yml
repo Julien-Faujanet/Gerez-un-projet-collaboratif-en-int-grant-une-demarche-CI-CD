@@ -77,15 +77,18 @@ jobs:
                     uses: actions/checkout@v4
                     with:
                           ref: develop
-                  - name: Push to back branch
+                  - name: Configure Git
                     run: |
-                          git config --global user.email "julienfaujanet@gmail.com"
-                          git config --global user.name "JulienFAUJA"
-                          git checkout -b back
-                          git add back/
-                          git commit -m "Update back"
-                          git push origin back --force
-                          git checkout develop
+                      git config --global user.email "julienfaujanet@gmail.com"
+                      git config --global user.name "JulienFAUJA"
+
+                  - name: Create and push to back branch
+                    run: |
+                      git fetch origin
+                      git checkout -B back
+                      git add back/
+                      git commit -m "Update back"
+                      git push origin back --force
 
       sonarcloud:
             name: Sonarcloud Scan

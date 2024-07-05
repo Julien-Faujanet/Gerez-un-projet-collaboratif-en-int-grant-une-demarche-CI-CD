@@ -55,11 +55,10 @@ jobs:
                     run: |
                         git config --global user.email "julienfaujanet@gmail.com"
                         git config --global user.name "JulienFAUJA"
+                        git pull origin develop
                         
                   - name: Commit changes
                     run: |
-                        git checkout front
-                        git pull origin develop
                         git add front/
                         git commit -m "Update front"
                         

@@ -3,7 +3,9 @@ name: Back
 on:
       push:
             branches: 
-              - main
+              - develop
+            paths:
+                  - 'back/**'
       pull_request:
             branches:
                   - main
@@ -78,8 +80,8 @@ jobs:
               projectBaseDir: back
               args: >
                 -Dsonar.organization=julienfauja
-                -Dsonar.projectKey=JulienFAUJA_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD-back
-                -Dsonar.projectName=JulienFAUJA_Projet10_OC_JF 
+                -Dsonar.projectKey=JulienFAUJA_Back
+                -Dsonar.projectName=Projet10_OC_JF_Back 
                 -Dsonar.sources=./src/main/java
                 -Dsonar.java.binaries=./target/classes
           - name: SonarCloud Scan

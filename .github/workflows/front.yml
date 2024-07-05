@@ -2,7 +2,9 @@ name: Front
 on:
       push:
             branches:
-                  - main
+                  - develop
+            paths:
+                  - 'front/**'
             
       pull_request:
             branches:
@@ -54,8 +56,8 @@ jobs:
                           projectBaseDir: front
                           args: >
                               -Dsonar.organization=julienfauja
-                              -Dsonar.projectKey=JulienFAUJA_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD-front
-                              -Dsonar.projectName=JulienFAUJA_Projet10_OC_JF 
+                              -Dsonar.projectKey=JulienFAUJA_Front
+                              -Dsonar.projectName=Projet10_OC_JF_Front
                               -Dsonar.sources=./src
 
                   - name: SonarCloud Scan

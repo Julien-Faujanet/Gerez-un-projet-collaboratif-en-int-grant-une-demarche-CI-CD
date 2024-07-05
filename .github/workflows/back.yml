@@ -79,16 +79,20 @@ jobs:
                           ref: develop
                   - name: Configure Git
                     run: |
-                      git config --global user.email "julienfaujanet@gmail.com"
-                      git config --global user.name "JulienFAUJA"
-
-                  - name: Create and push to back branch
+                        git config --global user.email "julienfaujanet@gmail.com"
+                        git config --global user.name "JulienFAUJA"
+                        git pull origin develop
+                  - name: Commit changes
                     run: |
-                      git fetch origin
-                      git checkout back
-                      git add back/
-                      git commit -m "Update back"
-                      git push origin back --force
+                        git checkout -B back
+                        git add back/
+                        git commit -m "Update back"
+
+                  - name: Push changes
+                    uses: ad-m/github-push-action@master
+                    with:
+                        github_token: ${{ secrets.GITHUB_TOKEN }}
+                        branch: back
 
       sonarcloud:
             name: Sonarcloud Scan

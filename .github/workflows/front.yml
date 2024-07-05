@@ -60,7 +60,7 @@ jobs:
                   - name: Create and push to front branch
                     run: |
                         git fetch origin
-                        git checkout -B front
+                        git checkout front
                         git add front/
                         git commit -m "Update front"
                         git push origin front --force

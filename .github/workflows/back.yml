@@ -85,7 +85,7 @@ jobs:
                   - name: Create and push to back branch
                     run: |
                       git fetch origin
-                      git checkout -B back
+                      git checkout back
                       git add back/
                       git commit -m "Update back"
                       git push origin back --force

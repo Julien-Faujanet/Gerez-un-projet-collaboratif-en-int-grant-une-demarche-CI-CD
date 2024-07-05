@@ -55,9 +55,9 @@ jobs:
                           args: >
                               -Dsonar.organization=julienfauja
                               -Dsonar.projectKey=JulienFAUJA_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD-front
-                              -Dsonar.projectName=Projet10_OC_JF_Front
+                              -Dsonar.projectName=JulienFAUJA_Projet10_OC_JF 
                               -Dsonar.sources=./src
-                              
+
                   - name: SonarCloud Scan
                     uses: sonarsource/sonarcloud-github-action@v2.3.0
                     env:

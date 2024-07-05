@@ -80,8 +80,8 @@ jobs:
                           ref: develop
                   - name: Configure Git
                     run: |
-                          git config --global user.email "julienfaujanet@gmail.com"
-                          git config --global user.name "JulienFAUJA"
+                          git config --local user.email "julienfaujanet@gmail.com"
+                          git config --local user.name "JulienFAUJA"
 
                   - name: Commit the changes
                     run: |

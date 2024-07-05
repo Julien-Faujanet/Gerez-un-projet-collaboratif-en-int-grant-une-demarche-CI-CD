@@ -85,8 +85,8 @@ jobs:
                         
                   - name: Commit the changes
                     run: |
-                        git checkout -B back
-                        git add back/
+                        git checkout back
+                        git add ./back/
                         git commit -m "Update back"
                         git pull origin develop
 

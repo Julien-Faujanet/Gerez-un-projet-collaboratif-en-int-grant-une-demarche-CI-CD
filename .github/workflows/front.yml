@@ -59,9 +59,11 @@ jobs:
                         
                   - name: Commit changes
                     run: |
-                        git checkout -b front
-                        git add front/
-                        git commit -m "Update front"
+                        git checkout -B front
+                        if [ -n "$(git status --porcelain front/)" ]; then
+                              git add front/
+                              git commit -m "Update front"
+                        fi
                         
 
                   - name: Push changes

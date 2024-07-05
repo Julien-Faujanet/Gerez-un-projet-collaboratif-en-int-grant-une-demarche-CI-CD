@@ -86,9 +86,11 @@ jobs:
                         
                   - name: Commit the changes
                     run: |
-                        git checkout -b back
-                        git add ./back/
-                        git commit -m "Update back"
+                        git checkout -B back
+                        if [ -n "$(git status --porcelain back/)" ]; then
+                          git add back/
+                          git commit -m "Update back"
+                        fi
                         
 
                   - name: Push changes

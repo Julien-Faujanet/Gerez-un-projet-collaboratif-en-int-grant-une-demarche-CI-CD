@@ -2,7 +2,8 @@ name: Back
 
 on:
       push:
-            branches: [develop, back]
+            branches: 
+              - develop
             
 
       pull_request:
@@ -75,35 +76,12 @@ jobs:
                           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
                           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
                     run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=JulienFAUJA_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD
-      push-back:
-            name: Push to back branch
-            runs-on: ubuntu-latest
-            needs: [build]
-            steps:
-                  - name: Checkout code
-                    uses: actions/checkout@v4
-                    with:
-                          ref: develop
-                  - name: Configure Git
-                    run: |
-                          git config --local user.email "julienfaujanet@gmail.com"
-                          git config --local user.name "JulienFAUJA"
-
-                  - name: Commit the changes
-                    run: |
-                          git checkout -B back
-                          if [ -n "$(git status --porcelain back/)" ]; then
-                            git pull origin back || true
-                            git add back/
-                            git commit -m "Update back"
-                            git push origin back --force
-                          fi
-
+      
       
       docker:
             name: Docker back
             runs-on: ubuntu-latest
-            needs: [build, push-back]
+            needs: [build]
             steps:
                   - name: Checkout code
                     uses: actions/checkout@v4

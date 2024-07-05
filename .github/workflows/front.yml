@@ -50,8 +50,14 @@ jobs:
             steps:
                   - uses: actions/checkout@v4
                     with:
-                          # Disabling shallow clone is recommended for improving relevancy of reporting
                           fetch-depth: 0
+                          projectBaseDir: front
+                          args: >
+                              -Dsonar.organization=julienfauja
+                              -Dsonar.projectKey=JulienFAUJA_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD-front
+                              -Dsonar.projectName=Projet10_OC_JF_Front
+                              -Dsonar.sources=./src
+                              
                   - name: SonarCloud Scan
                     uses: sonarsource/sonarcloud-github-action@v2.3.0
                     env:

@@ -64,6 +64,7 @@ jobs:
                               git pull origin front || true
                               git add front/
                               git commit -m "Update front"
+                              git push origin front --force
                         fi
                         
 

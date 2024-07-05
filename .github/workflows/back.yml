@@ -91,15 +91,11 @@ jobs:
                           git pull origin back || true
                           git add back/
                           git commit -m "Update back"
+                          git push origin back --force
                         fi
                         
 
-                  - name: Push changes
-                    uses: ad-m/github-push-action@master
-                    with:
-                        github_token: ${{ secrets.GITHUB_TOKEN }}
-                        branch: back
-
+                 
       sonarcloud:
             name: Sonarcloud Scan
             runs-on: ubuntu-latest

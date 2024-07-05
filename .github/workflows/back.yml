@@ -83,6 +83,7 @@ jobs:
                           git config --global user.email "julienfaujanet@gmail.com"
                           git config --global user.name "JulienFAUJA"
                           git checkout back
+                          git add ./back
                           git push origin back --force
                           git checkout develop
 

@@ -58,6 +58,7 @@ jobs:
                           git config --global user.email "julienfaujanet@gmail.com"
                           git config --global user.name "JulienFAUJA"
                           git checkout front
+                          git add ./front
                           git push origin front --force
                           git checkout develop
 

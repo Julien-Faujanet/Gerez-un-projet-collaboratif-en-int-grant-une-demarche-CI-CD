@@ -84,7 +84,7 @@ jobs:
                         git config --global user.email "julienfaujanet@gmail.com"
                         git config --global user.name "JulienFAUJA"
                         
-                  - name: Commit the changes
+                  - name: Commit changes
                     run: |
                         git checkout -B back
                         git add back/

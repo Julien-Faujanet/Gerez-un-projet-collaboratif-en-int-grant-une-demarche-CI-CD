@@ -84,6 +84,7 @@ jobs:
               git config --global user.name "JulienFAUJA"
               git checkout -b back
               git push origin back --force
+              git checkout -b develop
 
       sonarcloud:
         name: Sonarcloud Scan

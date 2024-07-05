@@ -5,7 +5,7 @@ on:
                   - develop
             paths:
                   - 'front/**'
-            
+
       pull_request:
             branches:
                   - main
@@ -52,13 +52,14 @@ jobs:
                   - name: Checkout code
                     uses: actions/checkout@v4
                     with:
-                        ref: develop
+                          ref: develop
                   - name: Push to front branch
                     run: |
-                        git config --global user.email "julienfaujanet@gmail.com"
-                        git config --global user.name "JulienFAUJA"
-                        git checkout -b front
-                        git push origin front --force
+                          git config --global user.email "julienfaujanet@gmail.com"
+                          git config --global user.name "JulienFAUJA"
+                          git checkout -b front
+                          git push origin front --force
+                          git checkout -b develop
 
       analyze:
             name: Analyze front
@@ -70,10 +71,10 @@ jobs:
                           fetch-depth: 0
                           projectBaseDir: front
                           args: >
-                              -Dsonar.organization=julienfauja
-                              -Dsonar.projectKey=JulienFAUJA_BobApp
-                              -Dsonar.projectName=Projet10_OC_JF_Name
-                              -Dsonar.sources=./src
+                                -Dsonar.organization=julienfauja
+                                -Dsonar.projectKey=JulienFAUJA_BobApp
+                                -Dsonar.projectName=Projet10_OC_JF_Name
+                                -Dsonar.sources=./src
 
                   - name: SonarCloud Scan
                     uses: sonarsource/sonarcloud-github-action@v2.3.0

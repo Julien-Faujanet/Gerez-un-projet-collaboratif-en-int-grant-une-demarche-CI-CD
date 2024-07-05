@@ -83,7 +83,7 @@ jobs:
                     run: |
                         git config --global user.email "julienfaujanet@gmail.com"
                         git config --global user.name "JulienFAUJA"
-                        git pull origin develop
+                        
                   - name: Commit the changes
                     run: |
                         git checkout -B back

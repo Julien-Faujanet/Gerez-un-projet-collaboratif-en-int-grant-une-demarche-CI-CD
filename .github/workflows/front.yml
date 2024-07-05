@@ -57,7 +57,7 @@ jobs:
                     run: |
                           git config --global user.email "julienfaujanet@gmail.com"
                           git config --global user.name "JulienFAUJA"
-                          git checkout -b front
+                          git checkout front
                           git push origin front --force
                           git checkout develop
 

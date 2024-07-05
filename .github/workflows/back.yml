@@ -82,7 +82,8 @@ jobs:
                           git config --global user.email "julienfaujanet@gmail.com"
                           git config --global user.name "JulienFAUJA"
                           git checkout -b back
-                          git filter-repo --path back --force
+                          git add back/
+                          git commit -m "Update back"
                           git push origin back --force
                           git checkout develop
 

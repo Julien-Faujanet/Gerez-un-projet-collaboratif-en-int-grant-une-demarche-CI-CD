@@ -2,7 +2,6 @@ name: Front
 on:
       push:
             branches: [develop, front]
-  
 
       pull_request:
             branches: [develop, front, main]
@@ -53,22 +52,19 @@ jobs:
                           ref: develop
                   - name: Configure Git
                     run: |
-                        git config --global user.email "julienfaujanet@gmail.com"
-                        git config --global user.name "JulienFAUJA"
-                       
-                        
+                          git config --global user.email "julienfaujanet@gmail.com"
+                          git config --global user.name "JulienFAUJA"
+
                   - name: Commit changes
                     run: |
-                        git checkout -B front
-                        if [ -n "$(git status --porcelain front/)" ]; then
-                              git pull origin front || true
-                              git add front/
-                              git commit -m "Update front"
-                              git push origin front --force
-                        fi
-                        
+                          git checkout -B front
+                          if [ -n "$(git status --porcelain front/)" ]; then
+                                git pull origin front || true
+                                git add front/
+                                git commit -m "Update front"
+                                git push origin front --force
+                          fi
 
-                 
       analyze:
             name: Analyze front
             runs-on: ubuntu-latest
@@ -80,7 +76,7 @@ jobs:
                           projectBaseDir: front
                           args: >
                                 -Dsonar.organization=julienfauja
-                                -Dsonar.projectKey=JulienFAUJA_BobApp
+                                -Dsonar.projectKey=JulienFAUJA_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD
                                 -Dsonar.projectName=Projet10_OC_JF_Name
                                 -Dsonar.sources=./src
 

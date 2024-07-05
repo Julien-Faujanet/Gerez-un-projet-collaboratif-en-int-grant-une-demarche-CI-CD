@@ -1,7 +1,8 @@
 name: Front
 on:
       push:
-            branches: [develop, front]
+            branches: 
+              - develop
             paths:
                   - 'front/**'
 

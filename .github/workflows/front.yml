@@ -1,7 +1,7 @@
 name: Front
 on:
       push:
-            branches: ['develop']
+            branches: [main, develop]
             paths:
                   - 'front/**'
       pull_request:

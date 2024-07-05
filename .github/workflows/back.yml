@@ -2,8 +2,9 @@ name: Back
 
 on:
       push:
-            branches: 
-              - main
+            branches: [develop, back]
+            paths:
+                  - 'back/**'
       pull_request:
             branches:
                   - main
@@ -44,6 +45,7 @@ jobs:
       build:
             name: Build and analyze back
             runs-on: ubuntu-latest
+            needs: [back-tests]
             defaults:
                   run:
                         working-directory: back
@@ -51,7 +53,7 @@ jobs:
             steps:
                   - uses: actions/checkout@v4
                     with:
-                          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+                          fetch-depth: 0 
                   - name: Set up JDK 17
                     uses: actions/setup-java@v1
                     with:
@@ -68,31 +70,56 @@ jobs:
                           path: ~/.m2
                           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
                           restore-keys: ${{ runner.os }}-m2
+      push-back:
+            name: Push to back branch
+            runs-on: ubuntu-latest
+            needs: [build]
+            steps:
+                  - name: Checkout code
+                    uses: actions/checkout@v4
+                    with:
+                          ref: develop
+                  - name: Configure Git
+                    run: |
+                        git config --global user.email "julienfaujanet@gmail.com"
+                        git config --global user.name "JulienFAUJA"
+                        git pull origin develop
+                  - name: Commit the changes
+                    run: |
+                        git checkout -B back
+                        git add back/
+                        git commit -m "Update back"
+
+                  - name: Push changes
+                    uses: ad-m/github-push-action@master
+                    with:
+                        github_token: ${{ secrets.GITHUB_TOKEN }}
+                        branch: back
+
       sonarcloud:
-        name: Sonarcloud Scan
-        runs-on: ubuntu-latest
-        steps:
-          - uses: actions/checkout@v4
-            with:
-              fetch-depth: 0
-              projectBaseDir: back
-              args: >
-                -Dsonar.organization=julienfauja
-                -Dsonar.projectKey=JulienFAUJA_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD-back
-                -Dsonar.projectName=JulienFAUJA_Projet10_OC_JF 
-                -Dsonar.sources=./src/main/java
-                -Dsonar.java.binaries=./target/classes
-          - name: SonarCloud Scan
-            uses: sonarsource/sonarcloud-github-action@v2.3.0 
-            env:
-              SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-            
-                  
+            name: Sonarcloud Scan
+            runs-on: ubuntu-latest
+            needs: [push-back]
+            steps:
+                  - uses: actions/checkout@v4
+                    with:
+                          fetch-depth: 0
+                          projectBaseDir: back
+                          args: >
+                                -Dsonar.organization=julienfauja
+                                -Dsonar.projectKey=JulienFAUJA_BobApp
+                                -Dsonar.projectName=Projet10_OC_JF_Name 
+                                -Dsonar.sources=./src/main/java
+                                -Dsonar.java.binaries=./target/classes
+                  - name: SonarCloud Scan
+                    uses: sonarsource/sonarcloud-github-action@v2.3.0
+                    env:
+                          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       docker:
             name: Docker back
             runs-on: ubuntu-latest
-            needs: [back-tests, build, sonarcloud]
+            needs: [build, sonarcloud]
             steps:
                   - name: Checkout code
                     uses: actions/checkout@v4

@@ -86,6 +86,7 @@ jobs:
                         
                   - name: Commit the changes
                     run: |
+                        git checkout back
                         git add ./back/
                         git commit -m "Update back"
                         

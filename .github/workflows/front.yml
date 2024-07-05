@@ -59,6 +59,7 @@ jobs:
                         
                   - name: Commit changes
                     run: |
+                        git checkout front
                         git add front/
                         git commit -m "Update front"
                         

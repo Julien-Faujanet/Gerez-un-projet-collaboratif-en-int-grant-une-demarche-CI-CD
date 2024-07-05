@@ -86,9 +86,10 @@ jobs:
                   - name: Commit the changes
                     run: |
                         git checkout back
+                        git pull origin develop
                         git add ./back/
                         git commit -m "Update back"
-                        git pull origin develop
+                        
 
                   - name: Push changes
                     uses: ad-m/github-push-action@master

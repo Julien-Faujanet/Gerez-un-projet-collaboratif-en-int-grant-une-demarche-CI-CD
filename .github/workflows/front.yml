@@ -61,7 +61,7 @@ jobs:
                     run: |
                         git checkout -B front
                         if [ -n "$(git status --porcelain front/)" ]; then
-                              git pull origin front
+                              git pull origin front || true
                               git add front/
                               git commit -m "Update front"
                         fi

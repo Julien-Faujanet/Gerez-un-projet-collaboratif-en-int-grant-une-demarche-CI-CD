@@ -44,7 +44,7 @@ jobs:
                           path: back/target/site/jacoco/*
 
       build:
-            name: Build and analyze back
+            name: Build and analyze back 
             runs-on: ubuntu-latest
             needs: [back-tests]
             defaults:

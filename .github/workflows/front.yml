@@ -66,11 +66,7 @@ jobs:
                         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
                     with:
                         args: >
-                              sonar-scanner \
-                              -Dsonar.projectKey=front \
-                              -Dsonar.sources=. \
-                              -Dsonar.host.url=http://localhost:9000 \
-                              -Dsonar.token=sqp_1b68ce788121104f3b6bc4b852063540cef98023
+                              sonar-scanner.bat -D"sonar.projectKey=front" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.token=sqp_1b68ce788121104f3b6bc4b852063540cef98023"
                             
       
       docker:

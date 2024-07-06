@@ -18,6 +18,7 @@
 		<sonar.organization>julienfauja</sonar.organization>
 		
 		<sonar.projectKey>back</sonar.projectKey>
+		<sonar.projectName>back</sonar.projectName>
     </properties>
     <dependencies>
         <dependency>

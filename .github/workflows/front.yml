@@ -50,32 +50,27 @@ jobs:
                     with:
                           github_token: ${{ secrets.GITHUB_TOKEN }}
                           branch: develop
-      sonarqube:
+      sonarcloud:
             name: SonarQube Scan
             runs-on: self-hosted
             needs: [ci]
             steps:
-                  - name: Start SonarQube
-                    run: docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:latest
-
-                  - name: Wait for SonarQube to be ready
-                    run: |
-                          echo "Waiting for SonarQube to be ready..."
-                          until curl -s http://localhost:9000/api/system/status | grep -q '"status":"UP"'; do
-                                sleep 5
-                          done
-
                   - uses: actions/checkout@v4
                     with:
-                          fetch-depth: 0
-
+                        # Disabling shallow clones is recommended for improving the relevancy of reporting
+                        fetch-depth: 0
                   - name: SonarQube Scan
-                    run: |
-                          docker run --rm -v "${{ github.workspace }}:/usr/src" sonarsource/sonar-scanner-cli:latest \
-                          -Dsonar.projectKey=front \
-                          -Dsonar.sources=front/src \
-                          -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
-                          -Dsonar.token=${{ secrets.SONAR_TOKEN_FRONT }}
+                    uses: sonarsource/sonarqube-scan-action@master
+                    env:
+                        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FRONT }}
+                        SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
+                    with:
+                        projectBaseDir: front
+                        args: >
+                              -Dsonar.host.url=${{ vars.SONAR_HOST_URL }}
+                              -Dsonar.token=${{ secrets.SONAR_TOKEN_FRONT }}
+                    
+                        
 
       docker:
             name: Docker front

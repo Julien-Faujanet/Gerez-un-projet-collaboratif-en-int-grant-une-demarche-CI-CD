@@ -57,20 +57,15 @@ jobs:
             steps:
                   - uses: actions/checkout@v4
                     with:
-                        # Disabling shallow clones is recommended for improving the relevancy of reporting
-                        fetch-depth: 0
+                          # Disabling shallow clones is recommended for improving the relevancy of reporting
+                          fetch-depth: 0
                   - name: SonarQube Scan
                     uses: sonarsource/sonarqube-scan-action@master
                     env:
-                        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FRONT }}
-                        SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
+                          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FRONT }}
+                          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
                     with:
-                        projectBaseDir: front
-                        args: >
-                              -Dsonar.host.url=${{ vars.SONAR_HOST_URL }}
-                              -Dsonar.token=${{ secrets.SONAR_TOKEN_FRONT }}
-                    
-                        
+                          projectBaseDir: front
 
       docker:
             name: Docker front

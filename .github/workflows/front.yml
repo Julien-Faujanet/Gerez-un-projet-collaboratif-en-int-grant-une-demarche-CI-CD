@@ -68,8 +68,7 @@ jobs:
                           args: >
                                 -Dsonar.projectKey=front
                                 -Dsonar.sources=front/src
-                                -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
-                                -Dsonar.token=${{ secrets.SONAR_TOKEN_FRONT }}
+                               
 
       docker:
             name: Docker front

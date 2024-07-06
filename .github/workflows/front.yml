@@ -59,10 +59,12 @@ jobs:
                     with:
                         fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
                   - name: SonarQube Scan
+                    env:
+                      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FRONT }}
+                      SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
                     run: |
-                       docker run --rm -v "${{ github.workspace }}:/usr/src" sonarsource/sonar-scanner-cli:latest \
-                        -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
-                        -Dsonar.token=${{ secrets.SONAR_TOKEN_FRONT }}
+                       docker run --rm -v "${{ github.workspace }}:/usr/src" sonarsource/sonar-scanner-cli:latest
+                        
 
       docker:
             name: Docker front

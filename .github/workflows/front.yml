@@ -66,9 +66,7 @@ jobs:
 
                     with:
                           projectBaseDir: front
-                          args: >
-                                -Dsonar.projectKey=front
-                                -Dsonar.sources=front/src
+                         
 
       docker:
             name: Docker front

@@ -61,8 +61,6 @@ jobs:
                   - name: SonarQube Scan
                     run: |
                        docker run --rm -v "${{ github.workspace }}:/usr/src" sonarsource/sonar-scanner-cli:latest \
-                        -Dsonar.projectKey=front \
-                        -Dsonar.sources=front/src \
                         -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
                         -Dsonar.token=${{ secrets.SONAR_TOKEN_FRONT }}
 

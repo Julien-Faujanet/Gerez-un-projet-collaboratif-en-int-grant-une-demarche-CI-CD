@@ -1,11 +1,10 @@
 name: Front
 on:
       push:
-            branches: 
+            branches:
                   - develop
             paths:
                   - 'front/**'
-            
 
       pull_request:
             branches: [develop, main]
@@ -57,18 +56,19 @@ jobs:
             steps:
                   - uses: actions/checkout@v3
                     with:
-                        fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+                          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
                   - name: SonarCloud Scan
                     uses: SonarSource/sonarcloud-github-action@master
                     env:
-                        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-                        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FRONT }}
-                        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+                          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FRONT }}
+                          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
                     with:
-                        args: >
-                             -D"sonar.projectKey=front" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.token=sqp_1b68ce788121104f3b6bc4b852063540cef98023"
-                            
-      
+                          args: >
+                                -D"sonar.projectKey=front" 
+                                -D"sonar.sources=front/src" 
+                                -D"sonar.host.url=http://localhost:9000" 
+                                -D"sonar.token=sqp_1b68ce788121104f3b6bc4b852063540cef98023"
+
       docker:
             name: Docker front
             runs-on: ubuntu-latest

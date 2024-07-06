@@ -94,4 +94,4 @@ jobs:
                           context: ./back
                           file: ./back/Dockerfile
                           push: true
-                          tags: jufau/bobapp:latest
+                          tags: jufau/bobapp_back:latest

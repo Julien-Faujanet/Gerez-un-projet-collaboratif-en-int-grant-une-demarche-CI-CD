@@ -69,7 +69,7 @@ jobs:
                           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
                     run: >
                           sonar-scanner
-                          working-directory: front
+                    working-directory: front
       docker:
             name: Docker front
             runs-on: ubuntu-latest

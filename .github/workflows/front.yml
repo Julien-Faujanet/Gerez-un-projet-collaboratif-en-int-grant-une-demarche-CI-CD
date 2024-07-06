@@ -7,7 +7,8 @@ on:
                   - 'front/**'
 
       pull_request:
-            branches: [develop, main]
+            branches:
+                  - main
 
             paths:
                   - 'front/**'
@@ -51,7 +52,7 @@ jobs:
                           branch: develop
       sonarcloud:
             name: SonarCloud
-            runs-on: ubuntu-latest
+            runs-on: self-hosted
             needs: [ci]
             steps:
                   - uses: actions/checkout@v4
@@ -68,7 +69,6 @@ jobs:
                           args: >
                                 -Dsonar.projectKey=front
                                 -Dsonar.sources=front/src
-                               
 
       docker:
             name: Docker front

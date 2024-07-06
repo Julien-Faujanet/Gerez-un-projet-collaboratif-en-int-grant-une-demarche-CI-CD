@@ -66,8 +66,11 @@ jobs:
                         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
                     with:
                         args: >
-                              -Dsonar.organization=julienfauja
-                              -Dsonar.projectKey=front
+                              sonar-scanner \
+                              -Dsonar.projectKey=front \
+                              -Dsonar.sources=. \
+                              -Dsonar.host.url=http://localhost:9000 \
+                              -Dsonar.token=sqp_1b68ce788121104f3b6bc4b852063540cef98023
                             
       
       docker:

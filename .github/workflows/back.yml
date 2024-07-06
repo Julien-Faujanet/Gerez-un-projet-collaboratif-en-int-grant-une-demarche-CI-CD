@@ -28,15 +28,10 @@ jobs:
                     with:
                           distribution: temurin
                           java-version: 11
-                  - name: Build project
+                  - name: Build and test project
                     run: mvn clean install
 
-                  - name: Run tests
-                    run: mvn verify -Dspring.profiles=test
-
-                  - name: Generate JaCoCo reports
-                    run: mvn test -Dspring.profiles=test
-
+              
                   - name: Upload JaCoCo reports
                     uses: actions/upload-artifact@v4
                     with:

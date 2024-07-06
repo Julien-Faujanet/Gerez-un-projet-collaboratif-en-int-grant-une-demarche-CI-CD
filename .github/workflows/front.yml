@@ -62,8 +62,7 @@ jobs:
                     env:
                       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FRONT }}
                       SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-                    run: |
-                       docker run --rm -v "${{ github.workspace }}:/usr/src" sonarsource/sonar-scanner-cli:latest
+                    run: docker run --rm -v "${{ github.workspace }}:/usr/src" sonarsource/sonar-scanner-cli:latest
                         
 
       docker:
